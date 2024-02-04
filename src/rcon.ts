@@ -184,7 +184,7 @@ export class Rcon {
     private handlePacket(data: Buffer) {
         const packet = decodePacket(data)
 
-        const id = this.authenticated ? packet.id : this.requestId - 1
+        const id = this.authenticated ? (packet.id + 1) : this.requestId - 1
         const handler = this.callbacks.get(id)
 
         if (handler) {
